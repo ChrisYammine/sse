@@ -1,19 +1,17 @@
+# Forked from https://github.com/r3labs/sse
+
 # SSE - Server Side Events Client/Server Library for Go
 
 ## Synopsis
 
 SSE is a client/server implementation for Server Side Events for Golang. Right now functionality is basic, but there is support for multiple separate streams with many clients connected to each. The client is able to specify the stream it wants to connect to by the URL parameter _stream_.
 
-## Build status
-
-* Master: [![CircleCI  Master](https://circleci.com/gh/r3labs/sse/tree/master.svg?style=svg)](https://circleci.com/gh/r3labs/sse/tree/master)
-
 ## Quick start
 
 To install:
 
 ```sh
-$ go get github.com/r3labs/sse
+$ go get github.com/ChrisYammine/sse
 ```
 
 To Test:
@@ -145,9 +143,7 @@ relevant unit tests.
 For transparency into our release cycle and in striving to maintain backward
 compatibility, this project is maintained under [the Semantic Versioning guidelines](http://semver.org/).
 
-## Copyright and License
-
-Code and documentation copyright since 2015 r3labs.io authors.
+## License
 
 Code released under
 [the Mozilla Public License Version 2.0](LICENSE).
