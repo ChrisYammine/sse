@@ -35,7 +35,7 @@ func (s *Server) HTTPHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Stream not found!", http.StatusInternalServerError)
 		return
 	} else if stream == nil && s.AutoStream {
-		stream = s.CreateStream(streamID)
+		stream = s.CreateStream(streamID, true)
 	}
 
 	eventid := r.Header.Get("Last-Event-ID")

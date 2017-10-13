@@ -31,7 +31,7 @@ func TestServer(t *testing.T) {
 
 	Convey("Given a new server", t, func() {
 		Convey("When creating a new stream", func() {
-			s.CreateStream("test")
+			s.CreateStream("test", false)
 
 			Convey("It should be stored", func() {
 				So(s.getStream("test"), ShouldNotBeNil)
@@ -41,7 +41,7 @@ func TestServer(t *testing.T) {
 		})
 
 		Convey("When removing a stream that exists", func() {
-			s.CreateStream("test")
+			s.CreateStream("test", false)
 			s.RemoveStream("test")
 
 			Convey("It should be removed", func() {
@@ -56,7 +56,7 @@ func TestServer(t *testing.T) {
 		})
 
 		Convey("When publishing to a stream that exists", func() {
-			s.CreateStream("test")
+			s.CreateStream("test", false)
 			stream := s.getStream("test")
 			sub := stream.addSubscriber("0")
 

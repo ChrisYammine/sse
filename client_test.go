@@ -24,7 +24,7 @@ func setup() {
 	server := httptest.NewServer(mux)
 	url = server.URL + "/events"
 
-	s.CreateStream("test")
+	s.CreateStream("test", false)
 
 	// Send continuous string of events to the client
 	go func(s *Server) {

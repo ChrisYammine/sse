@@ -26,7 +26,7 @@ func TestHTTP(t *testing.T) {
 		server := httptest.NewServer(mux)
 
 		Convey("When creating a new stream", func() {
-			s.CreateStream("test")
+			s.CreateStream("test", false)
 
 			Convey("It should publish events to its subscriber", func() {
 				c := NewClient(server.URL + "/events")
@@ -55,7 +55,7 @@ func TestHTTP(t *testing.T) {
 		})
 
 		Convey("When creating a new stream with existing events", func() {
-			s.CreateStream("test2")
+			s.CreateStream("test2", true)
 			defer s.RemoveStream("test2")
 
 			s.Publish("test2", &Event{Data: []byte("test 1")})

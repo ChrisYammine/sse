@@ -13,6 +13,7 @@ type Stream struct {
 	event       chan *Event
 	quit        chan bool
 	eventlog    EventLog
+	replay      bool
 }
 
 // StreamRegistration ...
@@ -22,7 +23,7 @@ type StreamRegistration struct {
 }
 
 // newStream returns a new stream
-func newStream(bufsize int) *Stream {
+func newStream(bufsize int, replay bool) *Stream {
 	return &Stream{
 		subscribers: make([]*Subscriber, 0),
 		register:    make(chan *Subscriber),
@@ -30,6 +31,7 @@ func newStream(bufsize int) *Stream {
 		event:       make(chan *Event, bufsize),
 		quit:        make(chan bool),
 		eventlog:    make(EventLog, 0),
+		replay:      replay,
 	}
 }
 
@@ -40,7 +42,9 @@ func (str *Stream) run() {
 			// Add new subscriber
 			case subscriber := <-str.register:
 				str.subscribers = append(str.subscribers, subscriber)
-				str.eventlog.Replay(subscriber)
+				if str.replay {
+					str.eventlog.Replay(subscriber)
+				}
 
 			// Remove closed subscriber
 			case subscriber := <-str.deregister:

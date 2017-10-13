@@ -44,8 +44,8 @@ func (s *Server) Close() {
 }
 
 // CreateStream will create a new stream and register it
-func (s *Server) CreateStream(id string) *Stream {
-	str := newStream(s.BufferSize)
+func (s *Server) CreateStream(id string, replay bool) *Stream {
+	str := newStream(s.BufferSize, replay)
 	str.run()
 
 	// Register new stream
